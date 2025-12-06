@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id("xyz.jpenilla.run-paper") version "2.3.1"
+    id 'com.gradleup.shadow' version '9.3.0'
 }
 
 group = 'fyi.ite'
@@ -16,6 +17,7 @@ repositories {
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.10-R0.1-SNAPSHOT")
+    implementation 'com.google.firebase:firebase-admin:9.7.0'
 }
 
 tasks {
@@ -45,6 +47,8 @@ tasks.withType(JavaCompile).configureEach {
     }
 }
 
+tasks.build.dependsOn tasks.shadowJar
+
 processResources {
     def props = [version: version]
     inputs.properties props
@@ -52,4 +56,13 @@ processResources {
     filesMatching('plugin.yml') {
         expand props
     }
+}
+
+shadowJar {
+    relocate 'com.google.firebase', 'fyi.ite.ITELiveMap.shaded.com.google.firebase'
+    relocate 'com.google.auth', 'fyi.ite.ITELiveMap.shaded.com.google.auth'
+
+    archiveClassifier.set('')
+    archiveBaseName.set('ITELiveMap')
+    archiveVersion.set('0.1')
 }

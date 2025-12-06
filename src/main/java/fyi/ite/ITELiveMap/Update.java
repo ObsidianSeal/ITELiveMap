@@ -1,6 +1,5 @@
 package fyi.ite.ITELiveMap;
 
-import com.destroystokyo.paper.MaterialTags;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;

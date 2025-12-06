@@ -117,3 +117,6 @@ runs/
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 !gradle-wrapper.jar
+
+# --- manually added ---
+ite-fyi-firebase-adminsdk-fbsvc-de0a1244a0.json
