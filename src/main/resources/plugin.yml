@@ -1,0 +1,8 @@
+name: ITELiveMap
+version: '0.1'
+main: fyi.ite.ITELiveMap.ITELiveMap
+api-version: '1.21'
+prefix: ITELM
+authors: [ Obsidian_Seal ]
+description: Show a live map of my Minecraft server on my website with Firebase Realtime Database.
+website: mc.ite.fyi
