@@ -10,6 +10,8 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 import java.util.logging.Logger;
 
+import static fyi.ite.ITELiveMap.ITELiveMap.setMapMaterial;
+
 public class Update implements Listener {
 
     private static final Logger log = Bukkit.getLogger();
@@ -23,6 +25,7 @@ public class Update implements Listener {
                 block = location.subtract(0, 1, 0).getBlock();
             } while (block.getType() == Material.AIR);
             log.info("block is " + block.getType() + " at [" + location.getBlockX() + ", " + location.getBlockY() + ", " + location.getBlockZ() + "]");
+            setMapMaterial(location, block);
         }
     }
 
