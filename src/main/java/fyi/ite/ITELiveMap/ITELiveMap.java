@@ -46,7 +46,7 @@ public final class ITELiveMap extends JavaPlugin {
     }
 
     public static void setMapMaterial(Location location, Block block) {
-        reference.child(location.getBlockX() + "," + location.getBlockZ()).setValueAsync(block.getType());
+        reference.child(location.getBlockX() + "," + location.getBlockZ()).setValueAsync(block.getBlockData().getMapColor().getRed() + "," + block.getBlockData().getMapColor().getGreen() + "," + block.getBlockData().getMapColor().getBlue());
     }
 
 }
