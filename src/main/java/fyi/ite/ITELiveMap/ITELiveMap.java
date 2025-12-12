@@ -6,22 +6,21 @@ import com.google.firebase.FirebaseOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.block.Block;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
 import java.util.Objects;
-import java.util.logging.Logger;
 
-public final class ITELiveMap extends JavaPlugin {
+public class ITELiveMap extends JavaPlugin {
 
-    private static final Logger log = Bukkit.getLogger();
+    public ConsoleCommandSender console;
     public FirebaseDatabase database;
     public static DatabaseReference reference;
 
     @Override
     public void onEnable() {
+        // FIREBASE INITIALIZATION
         FirebaseOptions options;
         try {
             options = FirebaseOptions.builder()
@@ -33,20 +32,23 @@ public final class ITELiveMap extends JavaPlugin {
         }
         FirebaseApp.initializeApp(options);
 
+        // SET VARIABLES
+        console = Bukkit.getConsoleSender();
         database = FirebaseDatabase.getInstance();
         reference = database.getReference("mc/map");
 
+        // INITIALIZE PLUGIN
         getServer().getPluginManager().registerEvents(new Update(), this);
-        log.info("HELLO. ITELiveMap NOW ENABLED.");
+        console.sendMessage("ITELiveMap enabled!");
     }
 
     @Override
     public void onDisable() {
-        log.info("FAREWELL. ITELiveMap NOW DISABLED.");
+        console.sendMessage("ITELiveMap disabled!");
     }
 
-    public static void setMapMaterial(Location location, Block block) {
-        reference.child(location.getBlockX() + "," + location.getBlockZ()).setValueAsync(block.getBlockData().getMapColor().getRed() + "," + block.getBlockData().getMapColor().getGreen() + "," + block.getBlockData().getMapColor().getBlue());
+    public static void sendMapRegion(String location, String blocks) {
+        reference.child(location).setValueAsync(blocks);
     }
 
 }

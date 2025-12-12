@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'fyi.ite'
-version = '0.1'
+version = '0.2'
 
 repositories {
     mavenCentral()
@@ -64,5 +64,5 @@ shadowJar {
 
     archiveClassifier.set('')
     archiveBaseName.set('ITELiveMap')
-    archiveVersion.set('0.1')
+    archiveVersion.set('0.2')
 }
